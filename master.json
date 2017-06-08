@@ -1,0 +1,57 @@
+{
+    "apiVersion": "apps/v1beta1",
+    "kind": "StatefulSet",
+    "metadata": {
+        "name": "redis-master"
+    },
+    "spec": {
+        "serviceName": "redis-master",
+        "replicas": 1,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app": "redis-master"
+                }
+            },
+            "spec": {
+                "terminationGracePeriodSeconds": 10,
+                "containers": [
+                    {
+                        "name": "redis-master",
+                        "image": "corybuecker/redis:3.2",
+                        "imagePullPolicy": "Always",
+                        "ports": [
+                            {
+                                "containerPort": 6379,
+                                "name": "redis-master"
+                            }
+                        ],
+                        "volumeMounts": [
+                            {
+                                "name": "redis-master-volume",
+                                "mountPath": "/data"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "volumeClaimTemplates": [
+            {
+                "metadata": {
+                    "name": "redis-master-volume"
+                },
+                "spec": {
+                    "accessModes": [
+                        "ReadWriteOnce"
+                    ],
+                    "resources": {
+                        "requests": {
+                            "storage": "5Gi"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,4 +1,4 @@
 FROM library/redis:3.2
-MAINTAINER Cory Buecker <email@corybuecker.com>
+MAINTAINER Olivier Boucher <olivier@everflow.io>
 
 COPY ["docker-entrypoint.sh", "/usr/local/bin/"]

@@ -1,0 +1,63 @@
+{
+    "apiVersion": "apps/v1beta1",
+    "kind": "StatefulSet",
+    "metadata": {
+        "name": "redis-slave"
+    },
+    "spec": {
+        "serviceName": "redis-slave",
+        "replicas": 2,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app": "redis-slave"
+                }
+            },
+            "spec": {
+                "terminationGracePeriodSeconds": 10,
+                "containers": [
+                    {
+                        "name": "redis-slave",
+                        "image": "corybuecker/redis:3.2",
+                        "imagePullPolicy": "Always",
+                        "env": [
+                            {
+                                "name": "REPLICA",
+                                "value": "true"
+                            }
+                        ],
+                        "ports": [
+                            {
+                                "containerPort": 6379,
+                                "name": "redis-slave"
+                            }
+                        ],
+                        "volumeMounts": [
+                            {
+                                "name": "redis-slave-volume",
+                                "mountPath": "/data"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "volumeClaimTemplates": [
+            {
+                "metadata": {
+                    "name": "redis-slave-volume"
+                },
+                "spec": {
+                    "accessModes": [
+                        "ReadWriteOnce"
+                    ],
+                    "resources": {
+                        "requests": {
+                            "storage": "5Gi"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
