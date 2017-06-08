@@ -25,33 +25,10 @@
                                 "containerPort": 6379,
                                 "name": "redis-master"
                             }
-                        ],
-                        "volumeMounts": [
-                            {
-                                "name": "redis-master-volume",
-                                "mountPath": "/data"
-                            }
                         ]
                     }
                 ]
             }
-        },
-        "volumeClaimTemplates": [
-            {
-                "metadata": {
-                    "name": "redis-master-volume"
-                },
-                "spec": {
-                    "accessModes": [
-                        "ReadWriteOnce"
-                    ],
-                    "resources": {
-                        "requests": {
-                            "storage": "5Gi"
-                        }
-                    }
-                }
-            }
-        ]
+        }
     }
 }

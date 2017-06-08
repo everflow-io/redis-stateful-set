@@ -31,33 +31,10 @@
                                 "containerPort": 6379,
                                 "name": "redis-slave"
                             }
-                        ],
-                        "volumeMounts": [
-                            {
-                                "name": "redis-slave-volume",
-                                "mountPath": "/data"
-                            }
                         ]
                     }
                 ]
             }
-        },
-        "volumeClaimTemplates": [
-            {
-                "metadata": {
-                    "name": "redis-slave-volume"
-                },
-                "spec": {
-                    "accessModes": [
-                        "ReadWriteOnce"
-                    ],
-                    "resources": {
-                        "requests": {
-                            "storage": "5Gi"
-                        }
-                    }
-                }
-            }
-        ]
+        }
     }
 }
