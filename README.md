@@ -2,7 +2,7 @@
 
 This is a proof of concept for running Redis with Sentinel on Kubernetes. In order to scale the size of the cluster, increase or decrease the replica count on the slave stateful set.
 
-Kubernetes Version: **1.5.4**
+Kubernetes Version: **1.6.x** (Requires StatefulSet introduced as a beta feature in 1.5.4)
 
 Redis Version: **3.2**
 
