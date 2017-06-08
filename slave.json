@@ -18,7 +18,7 @@
                 "containers": [
                     {
                         "name": "redis-slave",
-                        "image": "corybuecker/redis:3.2",
+                        "image": "gcr.io/production-1309/redis:latest",
                         "imagePullPolicy": "Always",
                         "env": [
                             {
